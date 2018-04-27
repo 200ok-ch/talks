@@ -1,0 +1,22 @@
+* Play Emacs like an instrument
+  
+** Rationale
+
+This is a talk I gave at the [[https://www.meetup.com/zh-clj-Zurich-Clojure-User-Group/events/249150421/][Clojure Meetup in Zurich, Switzerland]].
+
+** Abstract
+
+Lean back and relax while enjoying a deep dive into the wonderful
+world of the Emacs editor. Emacs renaissance came with the advent of
+Clojure and undoubtedly is the most popular editor among Clojurians
+today. Of course there is a lot more you can do with Emacs, but much
+like playing an instrument, great skill only comes with practice.
+
+You neither need to be an Emacs user nor a Clojure Programmer and
+neither do you need to contemplate about becoming one either to enjoy
+this talk. Much like you don't become a professional musician by
+attending a concert, but it might very well be inspiring.
+
+** Recording
+
+The talk has been recorded and is available on Youtube: https://www.youtube.com/watch?v=gfZDwYeBlO4
