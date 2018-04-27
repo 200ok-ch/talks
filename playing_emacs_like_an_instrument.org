@@ -1,0 +1,829 @@
+#+TITLE:     Play Emacs like an instrument
+#+AUTHOR:    \includegraphics[height=0.8cm]{images/Logo_200ok.png} \newline 200ok GmbH
+#+EMAIL:
+#+DATE:      Alain M. Lafon, 23.04.2018 \newline alain@200ok.ch
+#+KEYWORDS:  beamer org orgmode
+#+LANGUAGE:  en
+
+#+STARTUP: beamer showeverything
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: metropolis
+# Goettingen
+# Boadilla
+
+#+BEGIN_latex
+\addtobeamertemplate{frametitle}{}{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=0.8cm]{images/Logo_200ok_white.png}};
+\end{tikzpicture}}
+
+% Call \framedgraphic with either {filename.jpg} or [size]{filename.jpg}
+\newcommand{\framedgraphic}[2][0.7] {
+  \center\includegraphics[width=\textwidth,height=#1\textheight,keepaspectratio]{#2}
+}
+#+END_LaTeX
+
+# First level headlines for sections and the second (hence H:2) for frames
+#+OPTIONS:   H:2 toc:t ^:{}
+
+# selectively choose headlines to export or not
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+* Introduction
+
+** About me
+
+*** Alain M. Lafon
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    [[file:images/alain.jpg]]
+
+*** CV
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    - CEO 200ok GmbH
+    - Lecturer at ZHAW 
+    - Zen Monk, runs the Lambda [[http://zen-temple.net/zen-temples/lambda-zen-temple/introduction/][Zen Temple]]
+
+**** Contact
+
+alain@200ok.ch
+
+** Before we begin
+
+*** Any Emacs users in the room?
+
+** Right on!
+
+\framedgraphic{images/gnu_wallpaper.png}
+
+** How did you get started with Emacs?
+   
+
+- Did some of you start using Emacs because of Clojure?
+- If so, maybe this talk is a stimulus to start using Emacs for all
+  kinds of different tasks
+  
+*** 
+   :PROPERTIES:
+   :BEAMER_col: 0.45
+   :BEAMER_env: block
+   :END:
+   \center\includegraphics[height=0.25\textheight]{images/clojure_logo.png}
+
+*** 
+   :PROPERTIES:
+   :BEAMER_col: 0.45
+   :BEAMER_env: block
+   :END:
+   \center\includegraphics[height=0.25\textheight]{images/emacs_logo.png}
+
+** Before we begin
+
+*** Any VIM users in the room?
+
+** That's how we roll!
+
+\framedgraphic{images/vim_logo.png}
+
+** The rest of you? Maybe.
+
+\framedgraphic{images/it_does_not_work.jpg}
+
+** Don't judge me now
+
+*** Please defer your judgment of the previous slide until after the talk
+
+- This was not a random rant
+- It actually leads up to a point
+
+** Questions
+
+- I'll cover *a lot* of ground in this talk
+  - That's because I spend most of my /computer time/ in Emacs
+  - Also, there will be lots of background-info up-front
+- This is *not* a lightning talk
+    
+\center\rule{0.5\paperwidth}{0.4pt}
+
+- Please *ask questions* at any time when something is unclear or
+  you're simply curious
+  
+* Impressions
+** Impressions
+*** The faces of Emacs
+
+- Let's start out with something easy
+- What does Emacs actually look like?
+
+** The faces of Emacs
+
+*** Inception (obviously)
+
+\framedgraphic[0.6]{images/emacs_demo_inception.png} [fn:7]
+
+** The faces of Emacs
+
+*** Mail (Text and HTML)
+    
+\framedgraphic[0.6]{images/emacs_demo_mu4e.png} [fn:17]
+
+** The faces of Emacs
+
+*** Git
+
+\framedgraphic[0.6]{images/emacs_demo_magit.png} [fn:21]
+
+** The faces of Emacs
+
+*** Organization
+    
+\framedgraphic[0.6]{images/emacs_demo_org1.png} [fn:18]
+
+** The faces of Emacs
+
+*** Browsing the web (distraction/tracking free)
+
+\framedgraphic[0.6]{images/emacs_demo_eww.png} [fn:19]
+
+** The faces of Emacs
+
+*** Someone might even use Emacs for coding
+    
+\framedgraphic[0.6]{images/emacs_demo_cider.png} [fn:20]
+
+** The faces of Emacs
+
+*** Not really a face of Emacs
+    
+\framedgraphic[0.6]{images/emacs_demo_literate.png} [fn:24]
+
+** The faces of Emacs
+
+\center\textbf{Infinite diversity in infinite combinations}
+
+\center Ok then, but what *is* Emacs?
+
+* Definition time
+
+** What even is Emacs?
+
+*** =C-h i= (Emacs FAQ -> Status of Emacs)
+
+\framedgraphic{images/emacs_definition.png} 
+
+** So... Emacs is software from 1976?!                             :noexport:
+
+*** Every other old software is *young* compared to that
+
+- The first VIM release was 1991
+  - Says [[https://en.wikipedia.org/wiki/Vim_(text_editor)][Wikipedia]][fn:3], I couldn't find it in the VIM in-editor
+    docs, on vim.org the original VIM 1.0 source of thje git repo of
+    current VIM (8.0).
+- Linux appeared in 1991, as well[fn:5]
+- Only C is (slightly) older (1972) [fn:6]
+
+** So... Emacs is software from 1976?!
+
+*** Maybe once upon a time, Emacs was good looking
+
+\framedgraphic{images/thor_0.jpg}
+
+** So... Emacs is software from 1976?!
+
+*** And super powerful
+
+\framedgraphic{images/thor_1b.jpg}
+
+** So... Emacs is software from 1976?!
+
+*** But, maybe, dancing with old age...
+
+\framedgraphic{images/thor_2.jpg}
+
+** So... Emacs is software from 1976?!
+
+*** Slowly wore it down...
+
+\framedgraphic{images/thor_3.jpg}
+
+** So... Emacs is software from 1976?!
+
+*** Puts it to its place
+
+\framedgraphic{images/thor_4.jpg}
+
+** So... Emacs is software from 1976?!
+
+*** † And it should be buried †
+
+\framedgraphic{images/thor_5.jpg}
+
+** So... Emacs is software from 1976?!
+
+*** Or so you might think
+
+- However, the opposite is true!
+
+*** You want to know why?
+
+- You're at the right place!
+
+** Image attribution
+
+\framedgraphic{images/valhalla_movie.jpg} [fn:4]
+
+
+** GNU
+
+*** Emacs is the mother of all *Free Software*
+
+**** M-x describe-gnu-project
+    :PROPERTIES:
+    :BEAMER_col: 0.50
+    :BEAMER_env: block
+    :END:
+
+- GCC
+- GNU
+- Emacs
+
+**** 
+    :PROPERTIES:
+    :BEAMER_col: 0.50
+    :BEAMER_env: block
+    :END:
+
+- GPL
+- FSF
+- GNU/Linux
+
+*** GNU Emacs
+
+The Emacs tutorial (=C-h t=) dates the copyright to 1985.
+
+** Self-documentation
+
+*** Did you notice?
+
+- We have the first self-documentation win! 
+  - Info Pages: =C-h i=
+  - Tutorial: =C-h t=
+- More on Emacs' amazing self-documentation capabilities later
+  
+** GNU
+
+*** What is GNU?[fn:2]
+
+#+BEGIN_QUOTE
+GNU is an operating system that is free software—that is, it respects
+users' freedom. The development of GNU made it possible to use a
+computer without software that would trample your freedom.
+#+END_QUOTE
+
+
+** What even is Emacs?
+
+*** RMS at a Conference on Text Processing(1981)[fn:1]
+
+#+BEGIN_QUOTE
+EMACS(1) is a real-time display editor which can be extended by the
+user while it is running. \\ ... \\
+Extensibility makes EMACS more flexible
+than any other editor. Users are not limited by the decisions made by
+the EMACS implementors.
+#+END_QUOTE
+
+** Definitions
+
+*** Ok, so we got the definition for *Emacs* down
+
+** Definitions
+
+*** What is *playing*?
+
+#+BEGIN_QUOTE
+"Eine Pinselspur auf dem Papier, eine Äusserung ohne Absicht, die nur
+dem eigenen Bedüfnis folgt, bringt den Menschen zu sich selbst
+zurück."
+#+END_QUOTE
+    
+#+BEGIN_QUOTE
+"A brush stroke on paper, an utterance without intent, which only
+follows it's own needs, brings men back to the self."
+#+END_QUOTE
+Arno Stern[fn:14]
+
+** Definitions
+
+*** What is *playing*?
+    
+- Let's look at some forms of playing
+   
+
+** Forms of playing
+
+*** See how far you can get with some constraint
+
+\framedgraphic[0.6]{images/my_setup_2004.jpg} [fn:16]
+
+** Forms of playing
+
+*** Leaving home, going into the unknown
+
+\framedgraphic[0.6]{images/leaving_home.jpg} [fn:11]
+
+** Forms of playing
+
+*** Leaving all conveniences behind and intensely searching for what remains (Asking firmly: What is *this*?)
+
+\framedgraphic[0.6]{images/alain_empukuji.jpg} [fn:10]
+
+** Forms of playing
+
+*** And of course, the obviously fun things!
+
+** Forms of playing
+
+*** Applying color
+
+\framedgraphic[0.6]{images/monika_atelier.jpg} [fn:13]
+
+
+** Forms of playing
+
+*** Daring people to walk through ice cold mountain lakes
+
+\framedgraphic[0.6]{images/monika_lake.jpg} [fn:12]
+
+** Forms of playing
+
+*** And, yeah, even playing an instrument
+
+\framedgraphic{images/what_is_playing.jpg}
+
+** Definitions
+
+*** Playing
+
+- Play is a range of voluntary, intrinsically motivated activities[fn:8]
+- Play occurs at any life stage[fn:8]
+- (Self-) Exploration
+
+That actually used to be the definition of Hacking.[fn:9]
+
+Maybe we are on to something!
+
+* Play Emacs like an instrument
+
+** Live Demo
+
+*** The meat part
+
+- Switching gears now into live Emacs usage
+- I plan to announce all the new features that I'm touching
+- If I'm loosing you, forget to mention the name of a feature or you
+  have any other questions, don't hesitate to ask!
+  
+** Live Demo
+   
+*** Live Coding - what can go wrong?
+
+\framedgraphic{images/lambda_workplace.jpg}
+
+*** Speaker Notes                                                  :noexport:
+
+**** TODO [#A] Prep
+- [X] run =vagrant up=
+- [X] Move all other =things= tasks
+- [ ] Only add the two tasks for the talk
+- [ ] Send the mail from "Mr. Important Customer"
+
+#+BEGIN_QUOTE
+Dear Alain
+
+I have a high priority task for you. Please create an image gallery of
+some Emacs related pictures. A static page will do!
+
+Host: emacs-demo.200ok.ch
+
+Bill me more never leave Emacs to do it!
+
+Thanks,
+Alain
+#+END_QUOTE
+
+**** TODO [#A] Print the speaker notes and put them on the table
+**** TODO [#B] Fold the speaker notes and always jump back to check one task
+**** TODO New project == new Emacs
+
+- [ ] Open Emacs-Client
+
+- Mention the speed
+- Some people say:
+  - Eight Megs And Constantly Swappingo
+  - Eventually malloc()s All Computer Storage', and
+  - `EMACS Makes A Computer Slow'
+
+- They couldn't be more wrong
+
+**** TODO =things=
+
+- Mention
+  - Fold
+  - LOC
+
+- There's two tasks:
+
+***** TODO Play Emacs like an instrument                         :clojure.zh:
+      DEADLINE: <2018-04-23 Mon>
+
+***** TODO Have a beer
+      SCHEDULED: <2018-04-23 Mon>
+**** TODO Check =mu4e=
+
+- There's one new mail from "Mr. Important Customer"
+
+- [ ] Say: Yes, I have these kinds of customers, always.
+- [ ] Answer the email and say: Right away, Sir!
+- [ ] =mu4e=: Search driven, multiple accounts
+
+**** TODO Create a PROJECT from this mail and archive the mail
+**** TODO Go to your inbox
+
+- Move the PROJECT into "current 200ok"
+- Set it be to scheduled today
+- Narrow to the current project
+- Create TODOs
+  - Find some nice files
+  - Copy them to the server
+  - Create gallery page
+  - Deploy
+  - Inform customer that work is done
+  - Write a bill and send it
+**** TODO Clock in first task
+**** TODO Connect through tramp to host
+     
+     - [ ] Show dired
+     - [ ] Show multi tramp
+       - /ssh:emacs-demo|sudo:root@emacs-demo:/var/www/index.html
+
+**** TODO Create gallery html file
+
+- =image-dired=
+  - Let the audience choose a couple pictures
+  - Copy them to the other buffer (↓)
+
+- Rename all files with =dired=
+- Split buffer for =dired= + =eshell=
+- =ls -lt=
+- Visual Select the image info
+- Copy that into a new index.html file
+  - Split more buffers =index= + =dired= + =shell=
+  - Show some =winner-mode= functionality
+- Open it on the browser and see:
+  - Already deployed
+  - But kinda slow
+  - http://emacs-demo.200ok.ch:8081/
+  - http://localhost:8080/imp/live/index.html/
+
+***** TODO Magit
+
+- What's the first thing to do in a new project?
+  - Create a git repo
+
+- =magit-init=
+- Push to remote repo
+
+- Add some more content
+- Make a commit
+
+***** TODO =impatient-mode=, =evil=, =undo-tree=, =dired=
+
+- Open it in =impatient-mode=
+- Copy the data into the buffer
+  - Visual select only the file name column
+  - Make some img src tags
+  - Do some styling
+    - Padding
+    - Margin, Border, Center
+- [ ] Fuck up somehow, and show =undo-tree=
+- [ ] Copy and resize all images with =dired= and =mogrify=
+- [ ] Reload deployed URL
+
+**** TODO Event-oriented Hooks
+
+- Wouldn't it be nice if we had a pomodoro timer every time when we
+  started a task?
+- If only we had an editor that was extensible
+
+- [ ] Find the org-mode clock-in hook
+  - [ ] Use Self-documentation
+    - =C-h c=, =C-h f=, =C-h a=
+      
+- Extend the clock-in hook in *scratch*
+      
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-clock-in-hook (lambda ()
+                               (org-timer-set-timer 25))) 
+#+END_SRC
+
+
+- [ ] Mention that even when Hooks are not available, advising is
+  always possible!
+  - For example: Auto spell check after new word has been learned
+
+- [ ] Show literate Emacs config
+
+**** TODO Go back to the tasks
+
+- [ ] Mark First three as done
+
+**** TODO Go to the customer email through the todo link
+
+- Send a mail: All done!
+- Set to done
+
+**** TODO Make a =clock-report=
+
+**** TODO Make a better =clock-report=
+
+#+BEGIN: clocktable :maxlevel 9 :scope subtree :tstart "<2018-04-13 Fri>" :tend "<2018-04-24 Tue>" :indent nil :tcolumns 1 :timestamp t :formula "$4=$3*150;t" // :step day
+#+CAPTION: Clock summary at [2018-04-23 Mon 17:14]
+| Timestamp      | Headline                          |   Time |       |
+|----------------+-----------------------------------+--------+-------|
+|                | *Total time*                      | *0:12* | 30.00 |
+|----------------+-----------------------------------+--------+-------|
+| 2018-04-13 Fri | TODO Make a better =clock-report= |   0:12 | 30.00 |
+|                | Subtask                           |   0:12 | 30.00 |
+#+TBLFM: $4=$3*150;t
+#+END:
+     
+***** Subtask
+     CLOCK: [2018-04-23 Mon 17:00]--[2018-04-23 Mon 17:12] =>  0:12
+
+**** TODO Create an invoice from the report
+**** TODO Relax a little
+
+- [ ] Read some news in =elfeed=
+- [ ] Read some Hacker news in =eww=
+
+**** Now that the super small beginners project is done, do some coding!
+     - Fibonacci
+
+**** TODO JavaScript
+     
+- Definition: =M-.=
+- Doc: =C-c C-d=
+- Run: =C-x C-e=
+     
+#+BEGIN_SRC 
+
+function fib(n) {
+  if(n<2) {
+    return n
+  } else {
+    return fib(n-1) + fib(n-2)
+  }
+}
+
+fib(7) 
+
+
+#+END_SRC
+**** TODO Ruby on Rails
+     
+- [ ] Go to quickshift =app/models/shift.rb=
+- [ ] Fix =do= instead of =Symbol.to_proc=
+- [ ] =C-c C-d= Lookup documentation
+- [ ] =M-.= Jump to definition
+- [ ] Eval: Mark lines and =C-c C-r=
+
+  
+- [ ] New repo
+- [ ] =inf-ruby=
+
+#+BEGIN_SRC 
+def fib(n)
+  if n<2
+    n
+  else
+    fib(n-1) + fib(n-2)
+  end
+end 
+
+fib(7)   
+#+END_SRC
+     
+
+**** TODO Clojure
+
+- Clojure
+  - Look up symbol
+  - Evaluate buffer
+  - evaluate function
+  - extract function
+  - =C-d C-d a=
+    
+- [ ] Go to 200ok.ch repo and inject cider
+
+#+BEGIN_SRC 
+(defn fib [n]
+  (if (< n 2)
+    n
+    (+ (fib (- n 1))
+       (fib (- n 2))))) 
+
+(fib 7)  
+#+END_SRC
+
+**** TODO Last Thing: Go back to =things=
+
+- [ ] Check off =Play Emacs like an instrument=
+- [ ] Ask people if they want to join for having a beer
+  - [ ] Let's discuss in what order we shall have more Emacs talks on
+    the topics that we only broached today
+
+* Conclusion
+
+** Diamond Sutra of perfect wisdom
+
+"Developers, if there were as many Ganges rivers as the number of grains
+of sand in the Ganges, would you say that the number of grains of sand
+in all those Ganges rivers would be very many?"
+
+The developers answered: "Very many indeed!"
+
+"Developers, if after studying and observing even a single function of
+Emacs Lisp, another person were to explain it to others, the happiness and
+merit that would result from this virtuous act would be far greater."[fn:15]
+
+** The tiger bites the thrower,\\ the dog chases the mud-ball
+
+- Most work on the computer is based on either text processing or text
+  consumption
+- Not having a general text editor at your disposal is like being a
+  carpenter and only having a 3d printer in the toolbox
+  
+    
+** The tiger bites the thrower,\\ the dog chases the mud-ball
+    
+- Phenomena[fn:22] are infinite - don't chase them, you'll never catch them
+- Instead, always look for the Noumenon[fn:23]
+  - Move the focus from the outside to the inside!
+  - Ask yourself constantly: What is *this*?
+    
+\hfill\includegraphics[height=0.2\textheight]{images/the_dog_chases_the_mudball.png}
+
+** The tiger bites the thrower,\\ the dog chases the mud-ball
+
+*** So, what is Emacs?
+
+- Emacs is a *Lisp REPL*
+- It is *self documenting*
+- It can be *changed drastically* by the user while it is running
+
+- To me, it is the Swiss Army knife, not of text processors, but
+ ultimately of programs
+
+* Closing words
+  
+** What was this talk about?
+   
+*** Kaizen
+
+- Skill comes with practice
+- Continuous improvement leads to *virtuosity*
+
+#+BEGIN_QUOTE
+Free from desire, you realize the mystery.\\
+Caught in desire, you only see the manifestations.
+#+END_QUOTE
+\hfill Tao Te Ching
+
+
+** Further reading
+
+- Emacs Tutorial: =C-h t= || =M-x help-with-tutorial=
+- Emacs Manual: =C-h r= || =M-x info-emacs-manual=
+- All info manuals: =C-h i= || =M-x info=
+  - =org-mode=
+  - =magit=
+  - =mu4e=
+  - Actually all =info=-manuals from your system and Emacs
+
+- [[https://200ok.ch/category/emacs.html][200ok.ch/category/emacs.html]]
+- [[https://200ok.ch/atom.xml][200ok.ch/atom.xml]]
+
+** Talk tax
+
+*** Give yourself a chance, use Emacs!
+
+- If you liked this talk, head over to
+  https://github.com/munen/emacs.d/, go through the README and enjoy
+  magical powers
+- Ah, yes - and put a star on the repo, would ya?(;
+
+*** 
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    \includegraphics[height=0.35\textheight]{images/gnu_listen_half.jpg}
+
+
+*** 
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    \includegraphics[height=0.35\textheight]{images/emacs_logo.png}
+
+* TODO Quotes to incorporate                                       :noexport:
+
+- Eight Megs And Constantly Swappingo
+  - Eventually malloc()s All Computer Storage', and
+  - `EMACS Makes A Computer Slow'
+  - From the original Jargon file 1990: http://magic-cookie.co.uk/jargon/jarg211/
+  - Holy War, Jargon File from 1991:
+    http://magic-cookie.co.uk/jargon/jarg282/
+    - NB: Emacs had 41 occurrences in the Jargon File
+  - Emacs Operating System with Editor attached 2001: https://www.linux.com/news/emacs-vs-vi-endless-geek-holy-war
+
+- Free software means users have the four essential
+  freedoms: (0) to run the program, (1) to study and change the
+  program in source code form, (2) to redistribute exact copies, and
+  (3) to distribute modified versions.
+  - https://www.gnu.org/philosophy/philosophy.html
+
+- Sama: A small productivity gain, compounded over 50 years, is worth
+  a lot. So it’s worth figuring out how to optimize productivity. If
+  you get 10% more done and 1% better every day compared to someone
+  else, the compounded difference is massive.
+
+** Sait iGNUcius
+- Emacs was originally an extensible text editor written by Richard
+  Stallman, but it became a way of life and a religion.
+
+- Warning: taking the Church of Emacs (or any church) too seriously
+  may be hazardous to your health.
+
+- Saint iGNUcius: https://en.wikipedia.org/wiki/File:Richard_Stallman_-_Preliminares_2013.jpg
+- http://www.stallman.org/saint.html
+
+* Footnotes
+
+[fn:1] https://www.gnu.org/software/emacs/emacs-paper.html#SEC1
+
+[fn:2] https://www.gnu.org/
+
+[fn:3] https://en.wikipedia.org/wiki/Vim_(text_editor)
+
+[fn:4] Images of Thor from the movie [[https://www.imdb.com/title/tt0094238/?ref_%3Dfn_al_tt_1][*Valhalla* (1986)]]
+
+[fn:5] https://en.wikipedia.org/wiki/Linux
+
+[fn:6] https://en.wikipedia.org/wiki/C_(programming_language)
+
+[fn:7] =org-mode= and =pdf-tools=
+
+[fn:8] https://en.wikipedia.org/wiki/Play_(activity)
+
+[fn:9] https://stallman.org/articles/on-hacking.html
+
+[fn:10] Empukuji Monastery, Kyoto Japan
+
+[fn:11] 1.5 years back-packing
+
+[fn:12] My fiancée Monika in the mountains of Glarus
+
+[fn:13] Atelier of Monika Bieri: [[http://nur-malen.ch][nur-malen.ch]]
+
+[fn:14] Pedagogue and researcher: [[http://www.arnostern.com/en/en_biography.htm][arnostern.com]]
+
+[fn:15] Paraphrased from "The Diamond Sutra", chapter 11
+
+[fn:16] My setup just before entering university
+
+[fn:17] =mu4e=
+
+[fn:18] Spreadsheets, project planning, time tracking, etc with =org-mode=
+
+[fn:19] Browsing [[https://200ok.ch][200ok.ch]] with =eww= 
+
+[fn:20] Test Clojure code with =cider=
+
+[fn:21] =magit= (Also: Note how Emacs is configured with literate programming)
+
+[fn:22] New software, languages, tools
+
+[fn:23] Paradigms proven over time
+
+[fn:24] Literate Configuration/Programming through =org-mode=
