@@ -1,0 +1,325 @@
+#+TITLE:     Introduction to ClojureScript and Functional Programming
+#+AUTHOR:    \includegraphics[height=0.8cm]{images/Logo_200ok.png} \newline 200ok GmbH
+#+EMAIL:
+#+DATE:      Alain M. Lafon, 24.07.2018 \newline alain@200ok.ch
+#+KEYWORDS:  beamer org orgmode
+#+LANGUAGE:  en
+
+#+STARTUP: beamer showeverything
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: metropolis
+# Goettingen
+# Boadilla
+
+#+BEGIN_latex
+\addtobeamertemplate{frametitle}{}{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=0.8cm]{images/Logo_200ok_white.png}};
+\end{tikzpicture}}
+
+% Call \framedgraphic with either {filename.jpg} or [size]{filename.jpg}
+\newcommand{\framedgraphic}[2][0.7] {
+  \center\includegraphics[width=\textwidth,height=#1\textheight,keepaspectratio]{#2}
+}
+#+END_LaTeX
+
+# First level headlines for sections and the second (hence H:2) for frames
+#+OPTIONS:   H:2 toc:t ^:{}
+
+# selectively choose headlines to export or not
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+* Introduction
+
+** About me
+
+*** Alain M. Lafon
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    [[file:images/alain.jpg]]
+
+*** CV
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    - CEO 200ok GmbH
+    - CEO QuickShift GmbH
+    - Lecturer at ZHAW 
+    - Zen Monk, runs the Lambda [[http://zen-temple.net/zen-temples/lambda-zen-temple/introduction/][Zen Temple]]
+
+**** Contact
+
+alain@200ok.ch
+** Questions
+
+- I'll cover a lot of ground in this talk
+- However, this is *a lightning talk*
+    
+\center\rule{0.5\paperwidth}{0.4pt}
+
+- Please *ask questions* at any time, when something is unclear or
+  you're simply curious
+
+** Before we begin
+
+*** Any LISPers in the room?
+** Right on!
+
+\framedgraphic{images/gnu_wallpaper.png}
+
+** How did you get started with LISP?
+   
+
+- Did some of you start using LISP because of Clojure?
+  
+*** 
+   :PROPERTIES:
+   :BEAMER_col: 0.45
+   :BEAMER_env: block
+   :END:
+   \center\includegraphics[height=0.25\textheight]{images/clojure_logo.png}
+
+*** 
+   :PROPERTIES:
+   :BEAMER_col: 0.45
+   :BEAMER_env: block
+   :END:
+   \center\includegraphics[height=0.25\textheight]{images/clojurescript_logo.png}
+
+
+* Complexity, Functional Programming and Clojure
+
+** Complexity
+   
+
+*** 
+     :PROPERTIES:
+     :BEAMER_col: 0.45
+     :BEAMER_env: block
+     :END:
+
+- The complexity of software is growing at an exponential rate
+- The biggest problem is the growing complexity of dynamic state which
+  makes it hard to reason about a system
+  
+
+*** 
+     :PROPERTIES:
+     :BEAMER_col: 0.45
+     :BEAMER_env: block
+     :END:
+     
+[[file:images/frp_complexity.png]]
+  
+
+** "State - You're doing it wrong!"
+   
+#+BEGIN_CENTER
+
+\includegraphics[height=0.6\textheight]{images/rich-hickey.jpg}
+
+#+END_CENTER
+
+Rich Hickey, creator of the Clojure 
+
+Quote Source: http://clojure-log.n01se.net/date/2008-06-26.html#11:10a
+
+** Incidental complexity
+   
+State is hard. And on top, we often use *OOP* and *mutable state* to
+make things worse. It is very easy to add incidental complexity to
+your application. Just look at this very normal code which probably
+doesn't look complex at all:
+
+#+BEGIN_SRC javascript
+
+var x = 1;
+var y = x + 1;
+y == 2 == true;
+x = 2;
+y == 3 == false;
+
+#+END_SRC
+
+Due to *mutable state*, =y= was not updated after =x= has been changed.
+This makes reasoning about the current state and logic of the
+application hard.
+
+** How to design UI
+   
+#+BEGIN_QUOTE
+
+The UI layer is most predictable when it is described as a pure
+function of the application's state.
+
+#+END_QUOTE
+
+** Intro Clojure
+
+Some of the benefits of Clojure/ClojureScript are:
+
+ - It's a Lisp! (Code as Data)
+ - Functional language with immutable persistent data structures
+ - Almost no syntax
+ - Amazing tooling, Editor integration, performance
+ - Use the same language on back-end and front-end
+ - Uses Google Closure to optimize your code and included libraries
+ - Uncle Bob believes it to be [[https://skillsmatter.com/skillscasts/2323-bobs-last-language][the last programming language]]
+
+** Syntax Example
+   
+Syntax example (counting clicks) written in [[http://reagent-project.github.io/][Reagent]] which builds on
+top of [[https://facebook.github.io/react/][ReactJS]].
+
+#+BEGIN_SRC clojure
+(ns example
+  (:require [reagent.core :as r]))
+(defonce click-count (r/atom 0))
+
+(defn counting-component []
+  [:div
+   "Button has been clicked" @click-count " times"
+   [:input {:type "button" :value "Click me!"
+            :on-click #(swap! click-count inc)}]])
+#+END_SRC
+
+
+* Live Demo
+
+** Live Coding - what can go wrong?
+
+\framedgraphic{images/lambda_workplace.jpg}
+
+*** Speaker Notes                                                  :noexport:
+
+**** TODO Start a new project
+- =lein new reagent webzueri_demo +test +sass=
+- =lein figwheel=
+- =lein sass4clj auto=
+
+**** TODO Show current app (empty home/about page)
+
+**** TODO Add some text to about-page
+     
+- Isn't that already great?
+- But that is available on React and other frameworks (copied)
+
+**** TODO Of course this also works for CSS/LESS/SASS
+
+**** TODO Make a syntax error
+
+- Missing bracket
+- Undefined var
+
+**** TODO Say: We're building the dumbest calculator in the world
+
+#+BEGIN_SRC clojure
+[:div "Sum "
+    [:span (:sum @appstate)]]
+#+END_SRC
+
+**** TODO Create =appstate=o
+     
+#+BEGIN_SRC clojure
+(defonce appstate (atom {:sum 0}))
+#+END_SRC
+
+**** TODO Voilà, the sum is =0=
+
+**** TODO Add =inc-button=
+     
+#+BEGIN_SRC clojure
+(defn inc-button []
+  [:button 
+   {:on-click #(swap! appstate assoc :sum (+ (:sum @appstate) 1))}
+   "Inc"])
+#+END_SRC
+
+**** TODO Change some text on the about page, again
+
+**** TODO Go back to home: The state is still there!
+
+**** TODO Add =dec-button=
+
+Woow.
+
+**** TODO Clojure IDE features
+
+- Clojure
+  - Look up symbol
+  - Evaluate buffer
+  - evaluate function
+  - extract function
+  - =C-d C-d a=
+    
+- [ ] Start =cider-scratch= and inject cider
+
+#+BEGIN_SRC 
+(defn fib [n]
+  (if (< n 2)
+    n
+    (+ (fib (- n 1))
+       (fib (- n 2))))) 
+
+(fib 7)  
+#+END_SRC
+
+
+* Resources
+  
+** Talk tax
+
+*** Slides and minimal example app
+    
+**** 
+    
+Will be uploaded later to https://200ok.ch
+
+**** 
+     :PROPERTIES:
+     :BEAMER_col: 0.30
+     :BEAMER_env: block
+     :END:
+     \includegraphics[height=0.25\textheight]{images/Logo_200ok.png}
+     
+     
+**** 
+     :PROPERTIES:
+     :BEAMER_col: 0.15
+     :BEAMER_env: block
+     :END:
+     \includegraphics[height=0.25\textheight]{images/heart.png}
+
+     
+**** 
+     :PROPERTIES:
+     :BEAMER_col: 0.15
+     :BEAMER_env: block
+     :END:
+     \includegraphics[height=0.25\textheight]{images/clojure_sun.pdf}
+  
+** Watching / Reading List
+   
+*** Video
+
+- Simple made Easy (Rich Hickey): https://www.infoq.com/presentations/Simple-Made-Easy
+- Figwheel Demo (Bruce Hauman): https://www.youtube.com/watch?v=KZjFVdU8VLI
+  
+*** To read
+
+- Clojure for the Brave and True: http://www.braveclojure.com/
+- https://200ok.ch/category/clojure.html
+- [[https://200ok.ch/atom.xml][200ok.ch/atom.xml]]
+
+** Jobs
+
+*** In case you're searching for a job, talk or write to me!
+
+
+* Questions

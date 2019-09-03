@@ -1,22 +1,62 @@
-* Play Emacs like an instrument
-  
-** Rationale
+* 200ok Talks
 
-This is a talk I gave at the [[https://www.meetup.com/zh-clj-Zurich-Clojure-User-Group/events/249150421/][Clojure Meetup in Zurich, Switzerland]].
+Resources to various talks given by 200ok team members at various
+locations.
 
-** Abstract
+** Introduction to ClojureScript and Functional Programming :alain:clojure:fp:
+*** Rationale
 
-Lean back and relax while enjoying a deep dive into the wonderful
-world of the Emacs editor. Emacs renaissance came with the advent of
-Clojure and undoubtedly is the most popular editor among Clojurians
-today. Of course there is a lot more you can do with Emacs, but much
-like playing an instrument, great skill only comes with practice.
+This is a talk Alain gave at the [[https://www.meetup.com/de-DE/Web-Zurich/events/252786883][Web Zueri Meetup in Zurich,
+Switzerland]] on July 24, 2018.
 
-You neither need to be an Emacs user nor a Clojure Programmer and
-neither do you need to contemplate about becoming one either to enjoy
-this talk. Much like you don't become a professional musician by
-attending a concert, but it might very well be inspiring.
+*** Abstract
 
-** Recording
+The complexity of software is growing at an exponential rate. The
+biggest challenge is the growing complexity of dynamic state which
+makes it hard to reason about a system. There are many paradigms
+aiming to ease the situation. To reduce incidental complexity
+"Functional Programming" and "Code Hot-Reloading" have become much
+talked about topics in the web development community.
 
-The talk has been recorded and is available on Youtube: https://www.youtube.com/watch?v=gfZDwYeBlO4
+In this talk, Alain will show you how to supercharge your development
+setup with true code hot-reloading in a truly functional programming
+language.
+
+*** Recording
+
+To be announced. The Web Zueri crew made a recording and will publish
+it on their Youtube channel.
+
+*** Slides
+
+[[file:introduction_to_clojurescript_and_functional_programming][introduction_to_clojurescript_and_functional_programming]]
+
+
+
+** Play Emacs like an instrument                           :alain:clojure:fp:
+
+*** Rationale
+
+ This is a talk Alain gave at the [[https://www.meetup.com/zh-clj-Zurich-Clojure-User-Group/events/249150421/][Clojure Meetup in Zurich, Switzerland]]
+ on April 23, 2018.
+
+*** Abstract
+
+ Lean back and relax while enjoying a deep dive into the wonderful
+ world of the Emacs editor. Emacs renaissance came with the advent of
+ Clojure and undoubtedly is the most popular editor among Clojurians
+ today. Of course there is a lot more you can do with Emacs, but much
+ like playing an instrument, great skill only comes with practice.
+
+ You neither need to be an Emacs user nor a Clojure Programmer and
+ neither do you need to contemplate about becoming one either to enjoy
+ this talk. Much like you don't become a professional musician by
+ attending a concert, but it might very well be inspiring.
+
+*** Recording
+
+ The talk has been recorded and is available on Youtube: https://www.youtube.com/watch?v=gfZDwYeBlO4
+
+*** Slides
+
+[[file:play_emacs_like_an_instrument]]
