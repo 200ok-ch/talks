@@ -3,6 +3,40 @@
 Resources to various talks given by 200ok team members at various
 locations.
 
+
+** Introduction to =organice=                           :alain:emacs:OrgMode:
+
+*** Rationale
+
+    This is a pre-recorded talk of Alain for the [[https://emacsconf.org/2019/schedule][EmacsConf 2019]] on
+    November 2nd 2019.
+
+*** Abstract
+
+    Are you a fan of [[http://orgmode.org/][Org mode]]? If so, you probably want to have access
+    to your Org files at any time - even when away from your computer.
+    Or maybe you want to collaborate with other people who are not
+    Emacs users themselves.
+
+    organice is the solution for that!
+
+    It is an implementation of Org mode without the dependency of
+    [[https://www.gnu.org/software/emacs/][Emacs]]. It is built for mobile and desktop browsers and syncs with
+    Dropbox and Google Drive.
+
+    Please find the code of organice here:
+    https://github.com/200ok-ch/organice
+
+*** Recording
+
+    The talk has been pre-recorded and is available on Youtube: [[https://www.youtube.com/watch?v=aQKc0hcFXCk]]
+
+
+*** Slides
+
+[[file:introduction_to_organice/organice_intro.org][./introduction_to_organice/organice_intro.org]]
+
+
 ** Introduction to ClojureScript and Functional Programming :alain:clojure:fp:
 *** Rationale
 
