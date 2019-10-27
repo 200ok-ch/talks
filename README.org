@@ -37,6 +37,23 @@ locations.
 [[file:introduction_to_organice/organice_intro.org][./introduction_to_organice/organice_intro.org]]
 
 
+** Play Emacs like an instrument - Teaser                       :alain:emacs:
+
+*** Rationale
+
+    This is a pre-recorded talk of Alain for the [[https://emacsconf.org/2019/schedule][EmacsConf 2019]] on
+    November 2nd 2019.
+
+    [[*Play Emacs like an instrument][Play Emacs like an instrument]]
+
+*** Recording
+
+    https://youtu.be/uQfOlQ7Nyj8
+
+*** Slides
+
+    [[file:play_emacs_like_an_instrument_teaser/playing_emacs_like_an_instrument.org][./play_emacs_like_an_instrument_teaser/playing_emacs_like_an_instrument.org]]
+
 ** Introduction to ClojureScript and Functional Programming :alain:clojure:fp:
 *** Rationale
 

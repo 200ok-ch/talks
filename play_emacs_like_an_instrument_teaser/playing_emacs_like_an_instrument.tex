@@ -1,0 +1,297 @@
+% Created 2019-10-27 Sun 08:26
+% Intended LaTeX compiler: pdflatex
+\documentclass[bigger]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usetheme{metropolis}
+\author{\includegraphics[height=0.8cm]{images/Logo_200ok.png} \newline 200ok GmbH}
+\date{Alain M. Lafon, 2019-10-26 \newline alain@200ok.ch}
+\title{Play Emacs like an instrument \newline - Teaser -}
+\hypersetup{
+ pdfauthor={\includegraphics[height=0.8cm]{images/Logo_200ok.png} \newline 200ok GmbH},
+ pdftitle={Play Emacs like an instrument \newline - Teaser -},
+ pdfkeywords={beamer org orgmode},
+ pdfsubject={},
+ pdfcreator={Emacs 27.0.50 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\addtobeamertemplate{frametitle}{}{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=0.8cm]{images/Logo_200ok_white.png}};
+\end{tikzpicture}}
+
+% Call \framedgraphic with either {filename.jpg} or [size]{filename.jpg}
+\newcommand{\framedgraphic}[2][0.7] {
+  \center\includegraphics[width=\textwidth,height=#1\textheight,keepaspectratio]{#2}
+}
+
+\section{Introduction}
+\label{sec:orga6ffc52}
+
+\begin{frame}[label={sec:org38857b8}]{The tiger bites the thrower,\newline the dog chases the mud-ball}
+\begin{block}{Proposition}
+\begin{itemize}
+\item Most work on the computer is based on either text processing or text
+consumption
+\item Not having a general text editor at your disposal is like being a
+carpenter and only having a hammer in the toolbox
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[label={sec:org2a4583a}]{The tiger bites the thrower,\newline the dog chases the mud-ball}
+\begin{block}{Emacs is a great general text processor}
+\begin{itemize}
+\item Emacs is a \alert{Lisp REPL}
+\item It is \alert{self documenting}
+\item It can be \alert{changed drastically} by the user while it is running
+
+\item To me, it is the Swiss Army knife, not of text processors, but
+ultimately of programs
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[label={sec:orga1b1457}]{Original talk}
+\begin{itemize}
+\item This \alert{lightning talk} is a teaser of the original talk
+\item It'll give you an impression on whether it's worth for you to watch
+the original talk or not
+\end{itemize}
+
+\center\rule{0.5\paperwidth}{0.4pt}
+
+\begin{itemize}
+\item I'll cover \alert{a lot} of ground in the original talk
+\begin{itemize}
+\item That's because I spend most of my \emph{computer time} in Emacs
+\item Also, there will be lots of background-info up-front
+\item It is \alert{not} a lightning talk
+\begin{itemize}
+\item It's about 2h long $\backslash$(\^{}\_\^{})/
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\section{Impressions}
+\label{sec:org7515602}
+\begin{frame}[label={sec:orgac33c62}]{Impressions}
+\begin{block}{The faces of Emacs}
+\begin{itemize}
+\item Some impressions of the talk
+\item I call them "The faces of Emacs"
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[label={sec:orgc2dd868}]{The faces of Emacs}
+\begin{block}{Inception (obviously)}
+\framedgraphic[0.6]{images/emacs_demo_inception.png} \footnote{org-mode and pdf-tools}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org80bc5d7}]{The faces of Emacs}
+\begin{block}{Mail (Text and HTML)}
+\framedgraphic[0.6]{images/emacs_demo_mu4e.png} \footnote{mu4e}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:orgfa78672}]{The faces of Emacs}
+\begin{block}{Git}
+\framedgraphic[0.6]{images/emacs_demo_magit.png} \footnote{magit (Also: Note how Emacs is configured with literate programming)}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org6677ae6}]{The faces of Emacs}
+\begin{block}{Organization}
+\framedgraphic[0.6]{images/emacs_demo_org1.png} \footnote{Spreadsheets, project planning, time tracking, etc with org-mode}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:orgbb8850f}]{The faces of Emacs}
+\begin{block}{Browsing the web (distraction/tracking free)}
+\framedgraphic[0.6]{images/emacs_demo_eww.png} \footnote{Browsing \href{https://200ok.ch}{200ok.ch} with eww}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org555f19c}]{The faces of Emacs}
+\begin{block}{Someone might even use Emacs for coding}
+\framedgraphic[0.6]{images/emacs_demo_cider.png} \footnote{Test Clojure code with cider}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org169af7d}]{The faces of Emacs}
+\center\textbf{Infinite diversity in infinite combinations}
+
+\center Ok then, but what \alert{is} Emacs?
+\end{frame}
+
+\section{Definition time}
+\label{sec:org2ec616a}
+
+\begin{frame}[fragile,label={sec:org3f2af96}]{What even is Emacs?}
+ \begin{block}{C-h i (Emacs FAQ -> Status of Emacs)}
+\framedgraphic{images/emacs_definition.png}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:orge9e8b1e}]{So\ldots{} Emacs is software from 1976?!}
+\begin{block}{Every other old software is \alert{young} compared to that}
+\begin{itemize}
+\item The first VIM release was 1991
+\begin{itemize}
+\item Says \href{https://en.wikipedia.org/wiki/Vim\_(text\_editor)}{Wikipedia}\footnote{\url{https://en.wikipedia.org/wiki/Vim\_(text\_editor)}}, I couldn't find it in the VIM in-editor
+docs, on vim.org the original VIM 1.0 source of thje git repo of
+current VIM (8.0).
+\end{itemize}
+\item Linux appeared in 1991, as well\footnote{\url{https://en.wikipedia.org/wiki/Linux}}
+\item Only C is (slightly) older (1972) \footnote{\url{https://en.wikipedia.org/wiki/C\_(programming\_language)}}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label={sec:org3c6973e}]{GNU}
+ \begin{block}{Emacs is the mother of all \alert{Free Software}}
+\begin{columns}
+\begin{column}{0.50\columnwidth}
+\begin{block}{M-x describe-gnu-project}
+\begin{itemize}
+\item GCC
+\item GNU
+\item Emacs
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.50\columnwidth}
+\begin{block}{⋆}
+\begin{itemize}
+\item GPL
+\item FSF
+\item GNU/Linux
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{block}
+
+\begin{block}{GNU Emacs}
+The Emacs tutorial (C-h t) dates the copyright to 1985.
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org4bb5d64}]{GNU}
+\begin{block}{What is GNU?\footnote{\url{https://www.gnu.org/}}}
+\begin{quote}
+GNU is an operating system that is free software—that is, it respects
+users' freedom. The development of GNU made it possible to use a
+computer without software that would trample your freedom.
+\end{quote}
+\end{block}
+\end{frame}
+
+
+\section{Play Emacs like an instrument}
+\label{sec:orge33b69c}
+
+\begin{frame}[label={sec:org7eb833e}]{Live Demo}
+\begin{block}{The meat part}
+\begin{itemize}
+\item Switching gears now into live Emacs usage
+\item I plan to announce all the new features that I'm touching
+\item If I'm loosing you, forget to mention the name of a feature or you
+have any other questions, don't hesitate to ask!
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org328c90c}]{Live Demo}
+\begin{block}{Live Coding - what can go wrong?}
+\framedgraphic{images/lambda_workplace.jpg}
+\end{block}
+\end{frame}
+
+\section{Closing words}
+\label{sec:orgf4fb0fc}
+
+\begin{frame}[label={sec:org93c234b}]{Original Talk}
+If you liked this short teaser, please check out the original talk
+here:
+\url{https://200ok.ch/posts/2018-04-27\_Play\_Emacs\_like\_an\_Instrument.html}
+\end{frame}
+
+\begin{frame}[fragile,label={sec:orgfba8a7d}]{Further reading}
+ If you want to continue on your own:
+
+\begin{itemize}
+\item Emacs Tutorial: C-h t || M-x help-with-tutorial
+\item Emacs Manual: C-h r || M-x info-emacs-manual
+\item All info manuals: C-h i || M-x info
+\begin{itemize}
+\item org-mode
+\item magit
+\item mu4e
+\item Actually all info-manuals from your system and Emacs
+\end{itemize}
+
+\item \href{https://200ok.ch/category/emacs.html}{200ok.ch/category/emacs.html}
+\item \href{https://200ok.ch/atom.xml}{200ok.ch/atom.xml}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org58b5be0}]{Further reading}
+\begin{block}{Configuration}
+\framedgraphic[0.6]{images/emacs_demo_literate.png} \footnote{Literate Configuration/Programming through org-mode}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org2de4fed}]{Talk tax}
+\begin{block}{Give yourself a chance, use Emacs!}
+\begin{itemize}
+\item If you liked this talk, head over to
+\url{https://github.com/munen/emacs.d/}, go through the README and enjoy
+magical powers
+\item Ah, yes - and put a star on the repo, would ya?(;
+\end{itemize}
+\end{block}
+
+\begin{columns}
+\begin{column}{0.45\columnwidth}
+\begin{block}{⋆}
+\includegraphics[height=0.35\textheight]{images/gnu_listen_half.jpg}
+\end{block}
+\end{column}
+
+
+\begin{column}{0.45\columnwidth}
+\begin{block}{⋆}
+\includegraphics[height=0.35\textheight]{images/emacs_logo.png}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}
