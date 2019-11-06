@@ -51,7 +51,7 @@
 
 ** Description
 
-   organice is an implementation of [[http://orgmode.org/][Org mode]] without the dependency of [[https://www.gnu.org/software/emacs/][Emacs]]. It is built for mobile and desktop browsers and syncs with Dropbox and Google Drive.
+   organice is an implementation of [[http://orgmode.org/][Org mode]] without the dependency of [[https://www.gnu.org/software/emacs/][Emacs]]. It is built for mobile and desktop browsers and syncs with Dropbox, Google Drive and WebDAV.
 
 ** What does it look like?
 
@@ -294,7 +294,7 @@
      parser and a set of tests behind that written in Clojure / ClojureScript
 
    - If you're interested, please check it out:
-     [[https://gitlab.200ok.ch/200ok/org-parser][https://gitlab.200ok.ch/200ok/org-parser]]
+     https://github.com/200ok-ch/org-parser
 
 
 ** Further reading
