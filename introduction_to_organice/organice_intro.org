@@ -1,3 +1,16 @@
+#+TITLE:     organice
+#+AUTHOR:    \includegraphics[height=2cm]{images/organice.png} \newline \newline https://github.com/200ok-ch/organice
+#+EMAIL:
+#+DATE:      Alain M. Lafon, 2019-10-23 \newline alain@200ok.ch \newline \newline supported by \newline \includegraphics[height=0.8cm]{../assets/img/Logo_200ok.png}
+#+DESCRIPTION: Introduction
+#+KEYWORDS:  beamer org orgmode
+#+LANGUAGE:  en
+#+STARTUP: beamer showeverything
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: metropolis
+#+OPTIONS:   H:2 toc:t ^:{}
+
 * Introduction
 ** About me
 
@@ -335,18 +348,3 @@
     :END:
 
     \includegraphics[height=0.35\textheight]{images/emacs_logo.png}
-
-*** Settings                                                       :noexport:
-
-    #+TITLE:     organice
-    #+AUTHOR:    \includegraphics[height=2cm]{images/organice.png} \newline \newline https://github.com/200ok-ch/organice
-    #+EMAIL:
-    #+DATE:      Alain M. Lafon, 2019-10-23 \newline alain@200ok.ch \newline \newline supported by \newline \includegraphics[height=0.8cm]{../assets/img/Logo_200ok.png}
-    #+DESCRIPTION: Introduction
-    #+KEYWORDS:  beamer org orgmode
-    #+LANGUAGE:  en
-    #+STARTUP: beamer showeverything
-    #+LaTeX_CLASS: beamer
-    #+LaTeX_CLASS_OPTIONS: [bigger]
-    #+BEAMER_THEME: metropolis
-    #+OPTIONS:   H:2 toc:t ^:{}
