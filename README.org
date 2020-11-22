@@ -4,6 +4,35 @@ Resources to various talks given by 200ok team members at various
 locations.
 
 
+** Traverse complex JSON structures with live feedback                                 :alain:emacs:
+
+*** Rationale
+
+This is a pre-recorded talk of Alain for [[https://emacsconf.org/2020/][EmacsConf 2020]]: https://emacsconf.org/2020/schedule/25/
+
+*** Abstract
+
+If you are working with complex nested JSON structures, you are
+probably familiar with jq which is like sed for JSON data and great at
+what it does. However, being a command-line tool like sed, the
+feedback for writing queries and seeing their results is a discrete
+process and not live.
+
+When working with Emacs, we are used to good auto-completion and live
+feedback. Formerly, this was mostly done with static input, but with
+modern completion frameworks like Ivy and Counsel, this can be done
+with dynamic inputs, as well.
+
+*counsel-jq* is a package with which you can quickly test queries and
+traverse a complex JSON structure whilst having live feedback. Just
+call =M-x counsel-jq= in a buffer containing JSON, then start writing
+your *jq* query string and see the output appear live in the message
+area. Whenever you're happy, hit RET and the results will be displayed
+to you in the buffer =*jq-json*=.
+
+In this lightning talk, I'll give a quick overview on how to use
+counsel-jq and how to build similar completion functionality.
+
 ** Introduction to =organice=                           :alain:emacs:OrgMode:
 
 *** Rationale
