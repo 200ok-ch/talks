@@ -1,0 +1,180 @@
+#+TITLE:     Traverse complex JSON structures with live feedback
+#+AUTHOR:    \includegraphics[height=0.8cm]{images/Logo_200ok.png} \newline 200ok GmbH
+#+EMAIL:
+#+DATE:      Alain M. Lafon, 2020-11-29 \newline alain@200ok.ch
+#+KEYWORDS:  beamer org orgmode
+#+LANGUAGE:  en
+
+#+STARTUP: beamer showeverything
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: metropolis
+
+#+BEGIN_EXPORT latex
+\addtobeamertemplate{frametitle}{}{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=0.8cm]{images/Logo_200ok_white.png}};
+\end{tikzpicture}}
+
+% Call \framedgraphic with either {filename.jpg} or [size]{filename.jpg}
+\newcommand{\framedgraphic}[2][0.7] {
+  \center\includegraphics[width=\textwidth,height=#1\textheight,keepaspectratio]{#2}
+}
+#+END_EXPORT
+
+# First level headlines for sections and the second (hence H:2) for frames
+#+OPTIONS:   H:2 toc:t ^:{}
+
+# selectively choose headlines to export or not
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+* Introduction
+
+** About me
+
+*** Alain M. Lafon
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    [[file:images/alain.jpg]]
+
+*** CV
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+    - CEO 200ok GmbH (200ok.ch)
+    - Zen Monk, abbot of Lambda Zen Temple (zen-temple.net)
+
+**** Contact
+
+alain@200ok.ch
+
+** Proposition
+
+- Most work on the computer is based on either text processing or text
+  consumption.
+- Often, the text that needs to be processed, is in a structured
+  format, such as JSON, even if your job is not programming per se.
+- Reading through a bigger chunk of JSON is non-trivial, but essential
+  to get an understanding of the data.
+
+** Proposition
+
+Here is an example from the Github API: [[file:github_issue_comment.json]]
+
+Let us quickly check that out.
+
+** Prior art
+
+*** Processing JSON
+
+\leavevmode\hphantom{ }
+\newline
+
+#+begin_quote
+[[https://stedolan.github.io/jq/][jq]] is like =sed= for JSON data - you can use it to slice and filter
+and map and transform structured data with the same ease that sed,
+awk, grep and friends let you play with text.
+#+end_quote
+
+Quoted USP from https://stedolan.github.io/jq/
+
+
+* Demo
+
+** =jq=
+
+- [[https://stedolan.github.io/jq/][jq]] is written in portable C, and it has zero runtime dependencies.
+- Let's explore an example JSON file with it.
+
+** =jq= for JSON exploration
+
+Ok, so let's go to the shell and check out what =keys= are available
+on the top level:
+
+#+begin_src shell
+jq 'keys' github_issue_comment.json
+#+end_src
+
+#+begin_src json
+[
+  "action",
+  "comment",
+  "issue",
+  "organization",
+  "repository",
+  "sender"
+]
+#+end_src
+
+** =jq= for JSON exploration
+
+Let's find more information about that issue:
+
+#+begin_src shell
+jq '.issue' github_issue_comment.json
+#+end_src
+
+#+begin_src json
+{
+  "url": "https://api.github.com/repos/200ok-ch/organice/issues/319",
+  "repository_url": "https://api.github.com/repos/200ok-ch/organice",
+  "labels_url": "https://api.github.com/repos/200ok-ch/organice/issues/319/labels{/name}",
+  "comments_url": "https://api.github.com/repos/200ok-ch/organice/issues/319/comments",
+  "events_url": "https://api.github.com/repos/200ok-ch/organice/issues/319/events",
+  "html_url": "https://github.com/200ok-ch/organice/pull/319",
+...
+#+end_src
+
+** =jq= for JSON exploration
+
+This is where it gets tedious:
+
+- The output can be humongous whilst a shell is not the best place to
+  read through big output (=eshell= being one of the better shells for
+  this, because pretty much 'just' a regular Emacs buffer).
+- The command needs to be repeated and repeated and repeated until
+  finally the right query is built.
+
+It would be so much nicer to have live feedback. When working with
+Emacs, we're quite used to that, so there should be an option!
+
+** Prior art
+
+*** Completion in Emacs
+
+\leavevmode\hphantom{ }
+\newline
+
+#+begin_quote
+[[https://github.com/abo-abo/swiper][Ivy]] is a generic completion mechanism for Emacs. While it operates
+similarly to other completion schemes such as icomplete-mode, Ivy aims
+to be more efficient, smaller, simpler, and smoother to use yet highly
+customizable.
+#+end_quote
+
+Quoted USP from https://github.com/abo-abo/swiper
+
+** =counsel-jq= for JSON exploration
+
+- [[https://github.com/200ok-ch/counsel-jq][counsel-jq]] is a package with which you can quickly test queries and
+  traverse a complex JSON structure whilst having live feedback.
+- Just call =M-x counsel-jq= in a buffer containing JSON, then start
+  writing your jq query string and see the output appear live in the
+  message area.
+- Whenever you’re happy, hit RET and the results will be displayed to
+  you in the buffer *jq-json*.
+* References
+** Links
+
+- jq: https://stedolan.github.io/jq/
+- Ivy: https://github.com/abo-abo/swiper
+- counsel-jq:
+  - https://melpa.org/#/counsel-jq
+  - https://github.com/200ok-ch/counsel-jq
+- organice (Org mode for mobile and desktop browsers):
+  https://github.com/200ok-ch/organice
