@@ -8,7 +8,9 @@ locations.
 
 *** Rationale
 
-This is a pre-recorded talk of Alain for [[https://emacsconf.org/2020/][EmacsConf 2020]]: https://emacsconf.org/2020/schedule/25/
+This is Alain's talk from [[https://emacsconf.org/2020/][EmacsConf 2020]]: https://emacsconf.org/2020/schedule/25/
+
+Complementary blog post and video: https://200ok.ch/posts/2020-11-30_emacsconf_traverse_complex_json_structures_with_live_feedback_with_counseljq
 
 *** Abstract
 
